@@ -4,6 +4,16 @@ class Validation {
        this.rules = rules;
        this.object = object;
        this.errors = [];
+
+       this.defaultMessages = {
+           numeric : (field) => `${field} is not numeric`,
+           max : (field, value) => `${field} value is greather than ${value}`,
+           min : (field, value) => `${field} value is greather than ${value}`,
+           greaterThan : (field, value) => `${field} value is not greather than ${value}`,
+           equalTo : (field, value) => `${field} value is not equal to ${value}`,
+           required : (field) => `${field} is required`
+       }
+
    }
 
    validate () {
@@ -24,15 +34,39 @@ class Validation {
                        switch (this.currentValType) {
                            case "numeric":
 
+                               if (!this.validateNumeric()) {
+                                   this.setError()
+                               }
+
                            case "max":
+
+                               if (!this.validateMax()) {
+                                   this.setError()
+                               }
 
                            case "min":
 
+                               if (!this.validateMin()) {
+                                   this.setError()
+                               }
+
                            case "greaterThan":
+
+                               if (!this.validateGreaterThan()) {
+                                   this.setError()
+                               }
 
                            case "equalTo":
 
+                               if (!this.validateEqualTo()) {
+                                   this.setError()
+                               }
+
                            case "required":
+
+                               if (!this.validateRequired()) {
+                                   this.setError()
+                               }
 
                            default:
                                console.warn("Validation type does not exist")
@@ -52,6 +86,39 @@ class Validation {
        }
    }
 
+   setError() {
+       this.errors.push(this.setMessage())
+   }
+
+   setMessage() {
+
+   }
+
+   validateNumeric() {
+
+   }
+
+   validateMax() {
+
+   }
+
+   validateMin() {
+
+   }
+
+   validateGreaterThan() {
+
+   }
+
+   validateEqualTo() {
+
+   }
+
+   validateRequired() {
+
+   }
+
 }
+
 
 
