@@ -87,36 +87,64 @@ class Validation {
    }
 
    setError() {
-       this.errors.push(this.setMessage())
-   }
+    this.errors.push(this.setMessage())
+    }
 
-   setMessage() {
+    setMessage() {
+        if (this.currentMessage == undefined) {
+            return this.rules.defaultMessages[this.currentValType](this.currentField)
+        } else {
+            return this.currentMessage
+        }
+    }
 
-   }
+    validateNumeric() {
+        if (isNaN(this.currentField)) {
+            return false
+        } else {
+            return true
+        }
+    }
 
-   validateNumeric() {
+    validateMax() {
+        if (this.currentField > this.currentValue) {
+            return false
+        } else {
+            return true
+        }
+    }
 
-   }
+    validateMin() {
+        if (this.currentField < this.currentValue) {
+            return false
+        } else {
+            return true
+        }
+    }
 
-   validateMax() {
+    validateGreaterThan() {
+        if (this.currentField < this.currentValue) {
+            return false
+        } else {
+            return true
+        }
+    }
 
-   }
+    validateEqualTo() {
+        if (this.currentField === this.currentValue) {
+            return true
+        } else {
+            return false
+        }
+    }
 
-   validateMin() {
-
-   }
-
-   validateGreaterThan() {
-
-   }
-
-   validateEqualTo() {
-
-   }
-
-   validateRequired() {
-
-   }
+    validateRequired() {
+        if (this.currentField.trim().length === 0) {
+            return true
+        } else {
+            return false
+        }
+    }
 
 }
 
